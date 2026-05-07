@@ -1,4 +1,4 @@
--- =========================================== This file is to clean data in bronze_crm_customer_info and inserting data into silver_crm_customer_info =======================================================
+-- =========================================== This file is to clean data in bronze_crm_product_info and inserting data into silver_crm_product_info =======================================================
 INSERT INTO silver_crm_prd_info(
 	prd_id,
     cat_id,
