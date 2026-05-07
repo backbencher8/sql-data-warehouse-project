@@ -1,5 +1,5 @@
 -- =========================================== This file is to clean data in bronze_crm_customer_info and inserting data into silver_crm_customer_info =======================================================
-INSERT into silver_crm_customer_info(
+INSERT INTO silver_crm_customer_info(
   customer_id,
   customer_key,
   customer_firstname,
