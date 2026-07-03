@@ -4,6 +4,7 @@ Script Purpose:
   This script creates the tables in the bronze layer. It checks if the table with the specified name alreaady exists or not and if it is not there then the table is created.
   It also inserts the data from the files present in you device. If you are in MYSQL there may occur some error while inseting data from local file. Try using GPT to solve those errors.
 -- ********************************** Choosing the database **********************************
+*/
 USE data_warehouse;
 
 -- ********************************** Create customer_information table **********************************
@@ -195,7 +196,7 @@ SELECT * FROM bronze_erp_loc_a101;
 
 
 -- ********************************** Loading data of product into bronze_erp_loc_a101 table from csv file **********************************
-TRUNCATE TABLE bronze_erp_loc_a101;
+TRUNCATE TABLE bronze_erp_px_cat_g1v2;
 LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/PX_CAT_G1V2.csv' -- paste the path of the file from your pc
 INTO TABLE bronze_erp_px_cat_g1v2
 FIELDS TERMINATED BY ','
