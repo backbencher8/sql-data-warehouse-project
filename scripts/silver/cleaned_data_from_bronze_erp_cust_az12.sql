@@ -1,3 +1,5 @@
+-- =========================================== This file is to clean data in bronze_erp_cust_az12 and inserting data into silver_erp_cust_az12 =======================================================
+Truncate silver_erp_cust_az12;
 Insert into silver_erp_cust_az12 (
 cid, bdate, gen
 )
