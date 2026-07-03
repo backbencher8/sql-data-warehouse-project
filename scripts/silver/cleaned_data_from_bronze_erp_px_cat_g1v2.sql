@@ -1,4 +1,5 @@
 -- =========================================== This file is to clean data in bronze_erp_px_cat_g1v2 and inserting data into silver_erp_px_cat_g1v2 =======================================================
+TRUNCATE TABLE silver_erp_px_cat_g1v2;
 Insert into silver_erp_px_cat_g1v2
 (id, cat, subcat, maintanence)
 Select
