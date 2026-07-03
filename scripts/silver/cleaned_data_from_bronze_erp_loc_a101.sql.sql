@@ -1,3 +1,4 @@
+-- =========================================== This file is to clean data in bronze_erp_loc_a101 and inserting data into silver_erp_loc_a101 =======================================================
 Insert into silver_erp_loc_a101 (cid, cntry)
 select
 replace(cid,'-','') cid,
