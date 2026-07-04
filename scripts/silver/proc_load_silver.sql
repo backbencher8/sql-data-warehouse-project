@@ -1,3 +1,4 @@
+-- **************************** This script is to create procedure that loads data from bronze layer to silver layer ******************************** 
 DROP PROCEDURE IF EXISTS load_silver;
 
 DELIMITER $$
