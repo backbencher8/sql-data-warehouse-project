@@ -1,41 +1,154 @@
--- ********************************** Checking sales details *********************************
--- ================== Check invalid dates ===============
+/*
+===============================================================================
+Quality Checks
+===============================================================================
+Script Purpose:
+    This script performs various quality checks for data consistency, accuracy,
+    and standardization across the 'silver' layer. It includes checks for:
+    - Null or duplicate primary keys.
+    - Unwanted spaces in string fields.
+    - Data standardization and consistency.
+    - Invalid date ranges and orders.
+    - Data consistency between related fields.
+
+Usage Notes:
+    - Run these checks after loading data into the Silver Layer.
+    - Investigate and resolve any discrepancies found during the checks.
+===============================================================================
+*/
+
+-- ********************************** Checking silver_crm_customer_info **********************************
+
+-- Check for NULLs or duplicate customer IDs
 SELECT
-nullif (sls_order_dt,0) sls_order_dt
-FROM bronze_sales_details
-where sls_order_dt<=0 
-or length(sls_order_dt) != 8
-or sls_order_dt>20500101 
-or sls_order_dt<19900101;
+    customer_id,
+    COUNT(*) AS record_count
+FROM silver_crm_customer_info
+GROUP BY customer_id
+HAVING COUNT(*) > 1
+   OR customer_id IS NULL;
 
--- ==================== check date for orders ==================
-select
-*
-from bronze_sales_details
-where sls_ship_dt<sls_order_dt or sls_due_dt<sls_order_dt;
+-- Check for unwanted spaces
+SELECT
+    customer_key
+FROM silver_crm_customer_info
+WHERE customer_key <> TRIM(customer_key);
 
--- ============ checking business rules for sales = quantity * price, sales !=null or -ve ===============
-select DISTINCTsilver_sales_detailssilver_crm_customer_info
-sls_sales as old_sales,
-sls_quantity,
-sls_price as old_sls_price,
-case when sls_sales is null or sls_sales<=0 or sls_sales != sls_quantity * abs(sls_price)
-	then sls_quantity * abs(sls_price)
-    else sls_sales
-end as sls_sales,
-case when sls_price is null or sls_price <= 0
-	then round(sls_sales/nullif(sls_quantity,0))
-    else round(sls_price)
-end as sls_price
-from bronze_sales_details
-where sls_sales != sls_quantity * sls_price
-or sls_sales <= 0 or sls_sales is null
-or sls_price <= 0 or sls_price is null
-or sls_quantity <= 0 or sls_quantity is null
-ORDER BY sls_sales, sls_quantity, sls_price;
+-- Data Standardization & Consistency
+SELECT DISTINCT
+    customer_marital_status
+FROM silver_crm_customer_info;
+
+SELECT DISTINCT
+    customer_gender
+FROM silver_crm_customer_info;
 
 
+-- ********************************** Checking silver_crm_prd_info **********************************
 
--- ********************************** Checking customer details details *********************************
+-- Check for NULLs or duplicate product IDs
+SELECT
+    prd_id,
+    COUNT(*) AS record_count
+FROM silver_crm_prd_info
+GROUP BY prd_id
+HAVING COUNT(*) > 1
+   OR prd_id IS NULL;
+
+-- Check for unwanted spaces
+SELECT
+    prd_name
+FROM silver_crm_prd_info
+WHERE prd_name <> TRIM(prd_name);
+
+-- Check for NULL or negative costs
+SELECT
+    prd_cost
+FROM silver_crm_prd_info
+WHERE prd_cost IS NULL
+   OR prd_cost < 0;
+
+-- Data Standardization & Consistency
+SELECT DISTINCT
+    prd_line
+FROM silver_crm_prd_info;
+
+-- Check for invalid date ranges
+SELECT *
+FROM silver_crm_prd_info
+WHERE prd_end_dt < prd_start_dt;
 
 
+-- ********************************** Checking silver_crm_sales_details **********************************
+
+-- Check for NULL dates
+SELECT
+    sls_order_dt,
+    sls_ship_dt,
+    sls_due_dt
+FROM silver_crm_sales_details
+WHERE sls_order_dt IS NULL
+   OR sls_ship_dt IS NULL
+   OR sls_due_dt IS NULL;
+
+-- Check for invalid date order
+SELECT *
+FROM silver_crm_sales_details
+WHERE sls_order_dt > sls_ship_dt
+   OR sls_order_dt > sls_due_dt;
+
+-- Check sales consistency
+SELECT DISTINCT
+    sls_sales,
+    sls_quantity,
+    sls_price
+FROM silver_crm_sales_details
+WHERE sls_sales <> sls_quantity * sls_price
+   OR sls_sales IS NULL
+   OR sls_quantity IS NULL
+   OR sls_price IS NULL
+   OR sls_sales <= 0
+   OR sls_quantity <= 0
+   OR sls_price <= 0
+ORDER BY
+    sls_sales,
+    sls_quantity,
+    sls_price;
+
+
+-- ********************************** Checking silver_erp_cust_az12 **********************************
+
+-- Check for unrealistic birth dates
+SELECT DISTINCT
+    bdate
+FROM silver_erp_cust_az12
+WHERE bdate < '1924-01-01'
+   OR bdate > CURRENT_DATE();
+
+-- Data Standardization & Consistency
+SELECT DISTINCT
+    gen
+FROM silver_erp_cust_az12;
+
+
+-- ********************************** Checking silver_erp_loc_a101 **********************************
+
+SELECT DISTINCT
+    cntry
+FROM silver_erp_loc_a101
+ORDER BY cntry;
+
+
+-- ********************************** Checking silver_erp_px_cat_g1v2 **********************************
+
+-- Check for unwanted spaces
+SELECT *
+FROM silver_erp_px_cat_g1v2
+WHERE cat <> TRIM(cat)
+   OR subcat <> TRIM(subcat)
+   OR maintanence <> TRIM(maintanence);
+
+-- Data Standardization
+SELECT DISTINCT
+    maintanence
+FROM silver_erp_px_cat_g1v2;
