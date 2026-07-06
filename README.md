@@ -1,7 +1,10 @@
-# Data Warehouse and Analytics Project
+# Data Warehouse & Analytics Project
 
-Welcome to the **Data Warehouse & Analytics project** repository 
-This project shows a comprehensive data warehousing & analytics solution, from builiding a data warehouse to generating actionable insights. Designed as a portfolio project highlights industry best practises in data engineering & analytics.
+## Overview
+
+Welcome to the **Data Warehouse & Analytics** project repository.
+
+This project demonstrates an end-to-end data warehousing and analytics solution, covering the complete process from building a modern data warehouse to generating actionable business insights. It serves as a portfolio project that showcases industry best practices in **data engineering** and **data analytics**.
 
 ---
 
@@ -9,30 +12,50 @@ This project shows a comprehensive data warehousing & analytics solution, from b
 
 ### Objective
 
-Develop a modern data warehouse using My SQL to consolidate sales data, enabling analytical reporting and informed decision-making.
+Develop a modern data warehouse using **MySQL** to consolidate sales data from multiple source systems, enabling analytical reporting and data-driven decision-making.
 
 ### Specifications
 
-**Data Source:** Import data form two source systems (ERP & CRM) provided as CSV files.
-**Data Quality:** Cleanse and resolve data quality issues prior to analysis.
-**Integration:** Combine both sources into a single, user-friendly data model designed for analytical queries.
-**Scope:** Focus on the latest dataset only; historization of data is not required.
-**Documentation:**  Provide clear documentation of the data model to support both business stakeholders and analytics teams.
+* **Data Sources:** Import data from two source systems (**ERP** and **CRM**) provided as CSV files.
+* **Data Quality:** Clean and resolve data quality issues before analysis.
+* **Data Integration:** Combine data from both sources into a unified, analytics-friendly data model.
+* **Scope:** Focus on the latest available dataset; historical data tracking is not included.
+* **Documentation:** Provide clear documentation of the data model and architecture for both business stakeholders and analytics teams.
 
 ---
 
-### BI: Analytics & Reporting (Data Analysis)
+## Analytics & Reporting (Data Analysis)
 
 ### Objective
 
-Develop SQL- Based analytics to deliver detailed insights into:
+Develop SQL-based analytics to generate meaningful insights into:
 
-- Customer behaviour
-- Product Performance
-- Sales Trends
+* Customer behavior
+* Product performance
+* Sales trends
+
+---
+
+## Technologies Used
+
+* MySQL
+* SQL
+* ETL
+* Data Warehousing
+* Medallion Architecture (Bronze, Silver, Gold)
+* Notion
+* draw.io
+
+---
 
 ## License
-This project is licensed under the (MIT License). You are free to use, modify, & share this project with proper attribution
 
-## About me
-I am Bibek Bist. I am an IT student with a strong interest in the data domain, including data analysis, data engineering, and data science. I enjoy working across the data lifecycle—from processing to insights—and aim to build impactful, data-driven solutions.
+This project is licensed under the **MIT License**. You are free to use, modify, and distribute this project with proper attribution.
+
+---
+
+## About Me
+
+Hi, I'm **Bibek Bist**, an IT student with a strong interest in the data domain, particularly **Data Engineering**, **Data Analytics**, and **Data Science**.
+
+I enjoy working across the entire data lifecycle—from data ingestion and transformation to analysis and visualization—and I'm passionate about building impactful, data-driven solutions.
