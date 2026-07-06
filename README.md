@@ -54,6 +54,7 @@ Hi, I'm **Bibek Bist**, an IT student with a strong interest in the data domain,
 
 I enjoy working across the entire data lifecycle—from data ingestion and transformation to analysis and visualization—and I'm passionate about building impactful, data-driven solutions.
 
+---
 
 ## Acknowledgements
 
@@ -66,5 +67,3 @@ Course: https://youtu.be/9GVqKuTVANE?si=SXce5oxgLx3nYcjZ
 ## License
 
 This project is licensed under the **MIT License**. You are free to use, modify, and distribute this project with proper attribution.
-
----
