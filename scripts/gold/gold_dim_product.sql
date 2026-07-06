@@ -1,3 +1,13 @@
+/* Script Purpose:
+    This script creates views for the Gold layer in the data warehouse. 
+    The Gold layer represents the final dimension and fact tables (Star Schema)
+
+    This view performs transformations and combines data from the Silver layer 
+    to produce a clean, enriched, and business-ready dataset.
+
+Usage:
+    - These views can be queried directly for analytics and reporting.
+	*/
 create view gold_dim_product as 
 select 
 	Row_number() over (order by pr.prd_start_dt, pr.prd_key) as product_key,
