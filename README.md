@@ -48,14 +48,23 @@ Develop SQL-based analytics to generate meaningful insights into:
 
 ---
 
-## License
-
-This project is licensed under the **MIT License**. You are free to use, modify, and distribute this project with proper attribution.
-
----
-
 ## About Me
 
 Hi, I'm **Bibek Bist**, an IT student with a strong interest in the data domain, particularly **Data Engineering**, **Data Analytics**, and **Data Science**.
 
 I enjoy working across the entire data lifecycle—from data ingestion and transformation to analysis and visualization—and I'm passionate about building impactful, data-driven solutions.
+
+
+## Acknowledgements
+
+This project was completed as part of the **Data Warehouse** course by **Data with Baraa**. The course provided valuable guidance on designing and implementing an end-to-end data warehouse using the Medallion Architecture.
+
+Special thanks to Data with Baraa for creating such a practical and insightful learning resource.
+
+Course: https://youtu.be/9GVqKuTVANE?si=SXce5oxgLx3nYcjZ
+
+## License
+
+This project is licensed under the **MIT License**. You are free to use, modify, and distribute this project with proper attribution.
+
+---
